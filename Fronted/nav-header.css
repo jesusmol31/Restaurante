@@ -1,0 +1,90 @@
+:root {
+  --primary: #E63946;
+  --dark: #2d3142;
+  --light: #ffffff;
+  --gray: #bfc0c0;
+  --success: #4caf50;
+  --error: #e63946;
+  --crema: #FFF8F0;
+  --naranja: #E13F12
+}
+
+/* ====== ESTILO GENERAL ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Inter", "Roboto", system-ui, -apple-system, "Segoe UI", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-size: 16px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    height: 100dvh;
+    background-color: var(--crema);
+}
+
+.nav-app{
+    width: 100%;
+    background-color: var(--naranja);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    position: fixed;
+    bottom: 0;
+    box-shadow: 0 -2px 5px -2px #cfcfcf;
+    z-index: 10;
+}
+.nav-app ul{
+    display: flex;
+    flex-direction: row;
+    list-style: none;
+    align-items: center;
+    width: 100%;
+    justify-content: space-around;
+}
+.nav-app li{
+    text-decoration: none;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    padding: 10px 15px;
+}
+.nav-app li label{
+    font-size: 0.8rem;
+    color: var(--light);
+}
+
+.nav-app span{
+    color: #fff;
+    font-weight: lighter;
+    transform: scale(0.8);
+}
+
+
+/* HEADER */
+.header{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    padding: 0 15px;
+    justify-content: space-between;
+    align-items: center;
+    height: fit-content;
+    background-color: var(--naranja);
+    position: fixed;
+    top: 0;
+}
+.header img{
+    width: 100px;
+}
+.header span{
+    color: #fff;
+}

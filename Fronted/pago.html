@@ -1,0 +1,76 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="pago.css">
+    <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
+    <title>Document</title>
+</head>
+<body>
+    <header class="header">
+        <label for="">Pago</label>
+        <span class="material-symbols-outlined">
+            arrow_back
+        </span>
+    </header>
+    <main class="main">
+        <section class="main-section__metodo-pago">
+            <h2>Elige tu metodo de pago:</h2>
+            <div class="metodos__container">
+                <div class="metodo">
+                    <label for="">Pago con Yape</label>
+                    <img src="https://www.kfc.com.pe/_next/image?url=https%3A%2F%2Fdelosi-pidelo-dev-beta.s3.amazonaws.com%2Fmultimedia%2Fmetodos-pago%2FYAPE.png&w=1920&q=75" alt="" class="image-yape">
+                </div>
+                <div class="captura-yape">
+                    <label for="">Captura del pago</label>
+                    <input type="file">
+                </div>
+                <div class="metodo">
+                    <label for="">Pago presencial POS</label>
+                    <img src="https://www.kfc.com.pe/_next/image?url=https%3A%2F%2Fdelosi-pidelo-dev-beta.s3.amazonaws.com%2Fmultimedia%2Fmetodos-pago%2FPOS.png&w=1920&q=75" alt="" class="image-pos">
+                </div>
+                <div class="metodo">
+                    <label for="">Pago presencial Efectivo</label>
+                    <img src="https://www.kfc.com.pe/_next/image?url=https%3A%2F%2Fdelosi-pidelo-dev-beta.s3.amazonaws.com%2Fmultimedia%2Fmetodos-pago%2FEFECTIVO.png&w=1920&q=75" alt="" class="image-efectivo">
+                </div>
+            </div>
+        </section>
+        <section class="main-section__resumen-compra">
+            <div class="resumen-compra__container">
+                <h3>Resumen del pedido</h3>
+                <div class="linea-divisora"></div>
+                <div class="montos-container">
+                    <div class="sub-total__container">
+                        <label for="" class="label-subtotal">Subtotal</label>
+                        <label for="" class="precio-subtotal">S/179.70</label>
+                    </div>
+                    <div class="delivery__container">
+                        <label for="" class="label-delivery">Delivery</label>
+                        <label for="" class="precio-delivery">S/6.50</label>
+                    </div>
+                </div>
+                <div class="linea-divisora"></div>
+                <div class="monto-total__container">
+                    <label for="" class="label-total">Total</label>
+                    <label for="" class="precio-total">S/186.20</label>
+                </div>
+                <div class="autorizacion-container">
+                    <input type="checkbox">
+                    <label for="">Autorizo el tratamiento de mis datos para fines de prospección y promoción comercial</label>
+                </div>
+            </div>
+        </section>
+    </main>
+    <div class="btn-finalizar__container">
+        <button>Finalizar compra</button>
+    </div>
+
+    <div class="background-gracias-por-su-compra">
+        <div class="gracias-container">
+            <h3>GRACIAS POR COMPRAR EN <img src="logo olla.png" alt=""></h3>
+            <button>REGRESAR</button>
+        </div>
+    </div>
+</body>
+</html>

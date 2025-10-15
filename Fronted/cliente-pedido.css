@@ -1,0 +1,194 @@
+/* ====== PALETA ====== */
+:root {
+  --primary: #E63946;
+  --dark: #2d3142;
+  --light: #ffffff;
+  --gray: #bfc0c0;
+  --success: #4caf50;
+  --error: #e63946;
+  --crema: #FFF8F0;
+  --naranja: #E13F12
+}
+
+/* ====== ESTILO GENERAL ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Inter", "Roboto", system-ui, -apple-system, "Segoe UI", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-size: 16px;
+}
+
+body{
+    background-color: var(--crema);
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 100%;
+    height: 100dvh;
+}
+.header{
+    width: 100%;
+    height: 50px;
+    z-index: 100;
+    position: fixed;
+    background-color: var(--naranja);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+.header label{
+    color: var(--light);
+    text-transform: capitalize;
+    font-weight: bolder;
+    font-size: 1.2rem;
+    margin-bottom: 5px;
+}
+.header span{
+    position: absolute;
+    left: 15px;
+    color: var(--light);
+}
+.datos-container{
+    margin-top: 70px;
+    background-color: var(--light);
+    width: 100%;
+    box-shadow: 0 1px 10px 0px rgb(0 0 0 / 10%);
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 20px;
+    flex: 1;
+    padding-bottom: 120px;
+}
+.datos-container h2{
+    color: var(--naranja);
+    font-size: 1.2rem;
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    align-items: center;
+    justify-content: flex-start;
+    letter-spacing: 0px;
+}
+.datos-cliente__container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+.dato-cliente{
+    width: 100%;
+    display: flex;
+    gap: 10px;
+    position: relative;
+    align-items: center;
+    justify-content: flex-start;
+}
+.dato-cliente label{
+    position: absolute;
+    padding-left: 15px;
+    color: #666;
+    font-weight: 400;
+}
+.dato-cliente input{
+    width: 100%;
+    padding: 12px;
+    border-radius: 10px;
+    border: 1px solid var(--gray);
+}
+.comprobantes-container{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    border-radius: 20px;
+    background-color: #efefef;
+    padding: 20px;
+    box-shadow: 0 1px 2px 0px rgb(0 0 0 / 10%);
+}
+.comprobante{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+.comprobante label{
+    color: var(--dark);
+    font-weight: bold;
+    font-size: 0.8rem;
+}
+.comprobante input{
+    accent-color: var(--naranja);
+}
+.delivery-container h2{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+}
+.delivery-container{
+    width: 100%;
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: flex-start;
+}
+.delivery-container label{
+    position: absolute;
+    padding-left: 15px;
+    color: #666;
+}
+.delivery-container input{
+    width: 100%;
+    padding: 12px;
+    border: 1px solid var(--gray);
+    border-radius: 10px;
+}
+.btn-continuar__container{
+    width: 100%;
+    height: 80px;
+    background-color: var(--light);
+    box-shadow: 0 1px 10px 0px rgb(0 0 0 / 10%);
+    position: fixed;
+    bottom: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    padding: 0 20px;
+
+}
+.btn-continuar__container button{
+    width: 100%;
+    padding: 10px;
+    border: none;
+    background-color: var(--naranja);
+    border-radius: 10px;
+    color: var(--light);
+}
+.politica-container{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 15px;
+}
+.politica-container input{
+    accent-color: var(--naranja);
+    transform: scale(1.2);
+}
+.politica-container label{
+    color: var(--dark);
+    font-size: 0.8rem;
+    text-align: justify;
+}
+.politica-container span{
+    color: var(--naranja);
+    text-decoration: underline;
+    font-size: 0.8rem;
+}
