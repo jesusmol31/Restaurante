@@ -25,10 +25,10 @@ resetPasswordForm.addEventListener('submit', async (e) => {
         const data = await response.json();
 
         if (response.ok) {
-            alert(data.msg);
+            alert(data.message || data.msg || data.error || 'Contraseña actualizada.');
             window.location.href = 'login.html';
         } else {
-            alert(data.msg);
+            alert(data.message || data.msg || data.error || 'Ocurrió un error.');
         }
     } catch (error) {
         console.error('Error:', error);

@@ -1,89 +1,122 @@
-import { User } from '../Models/User.js';
 import bcrypt from 'bcryptjs';
 import jwt from 'jsonwebtoken';
 import nodemailer from 'nodemailer';
-import { sequelize } from '../config/db.js';
+import { UserModel } from '../Models/User.js';
 
+// Configuración de Nodemailer (transporter)
 const transporter = nodemailer.createTransport({
-    service: 'Gmail',
-    auth: {
-        user: 'molerojesus69@gmail.com',
-        pass: process.env.GMAIL_APP_PASSWORD 
-    }
+  service: 'Gmail',
+  auth: {
+    user: process.env.GMAIL_USER || 'molerojesus69@gmail.com',
+    pass: process.env.GMAIL_APP_PASSWORD
+  }
 });
 
-export async function registrarUsuario(req, res) {
-  try {
-    const { nombre, email, password, telefono } = req.body;
-    const existingUser = await User.findOne({ where: { email } });
-    if (existingUser) {
-      return res.status(400).json({ msg: 'El usuario ya existe' });
-    }
-    const hashedPassword = await bcrypt.hash(password, 10);
-    const newUser = await User.create({ nombre, email, password: hashedPassword, telefono });
-    res.status(201).json({ msg: 'Usuario registrado correctamente ✅', user: newUser });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al registrar usuario' });
-  }
-}
+class AuthController {
+  async registrarUsuario(req, res) {
+    try {
+      const { nombreCompleto, correo, email, password, contrasena, telefono, idRolUsuario } = req.body;
+      const userEmail = correo || email;
+      const plain = password || contrasena;
+      if (!plain || !userEmail) return res.status(400).json({ error: 'Faltan campos' });
 
-export async function iniciarSesion(req, res) {
-  try {
-    const { email, password } = req.body;
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      return res.status(400).json({ msg: 'Credenciales inválidas' });
-    }
-    const isMatch = await bcrypt.compare(password, user.password);
-    if (!isMatch) {
-      return res.status(400).json({ msg: 'Credenciales inválidas' });
-    }
-    const payload = { id: user.id };
-    const token = jwt.sign(payload, process.env.JWT_SECRET, { expiresIn: '1h' });
-    res.json({ token, user: { id: user.id, nombre: user.nombre, email: user.email } });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al iniciar sesión' });
-  }
-}
+      const existingUser = await UserModel.findByEmail(userEmail);
+      if (existingUser) return res.status(400).json({ error: 'El correo ya está registrado' });
 
-export async function solicitarRestablecimiento(req, res) {
-  try {
-    const { email } = req.body;
-    const user = await User.findOne({ where: { email } });
-    if (!user) {
-      return res.status(200).json({ msg: 'Si el correo electrónico existe, recibirás un enlace para restablecer tu contraseña.' });
+      const hashedPassword = await bcrypt.hash(plain, 10);
+
+      const id = await UserModel.create({
+        idRolUsuario: idRolUsuario ?? null,
+        nombreCompleto,
+        correo: userEmail,
+        contrasena: hashedPassword,
+        telefono: telefono ?? null
+      });
+
+      res.status(201).json({ message: '✅ Usuario registrado correctamente', id });
+    } catch (error) {
+      console.error('Error al registrar usuario:', error);
+      res.status(500).json({ error: 'Error al registrar usuario' });
     }
-    const token = jwt.sign({ id: user.id }, process.env.JWT_SECRET, { expiresIn: '1h' });
-    const mailOptions = {
-        from: 'molerojesus69@gmail.com',
-        to: user.email,
+  }
+
+  async iniciarSesion(req, res) {
+    try {
+      const { correo, email, password, contrasena } = req.body;
+      const userEmail = correo || email;
+      const plain = password || contrasena;
+      if (!userEmail || !plain) return res.status(400).json({ error: 'Faltan campos' });
+
+      const user = await UserModel.findByEmail(userEmail);
+      if (!user) return res.status(404).json({ error: 'Usuario no encontrado' });
+
+      const stored = user.contrasena ?? user.password ?? user.correo;
+      const validPassword = await bcrypt.compare(plain, stored);
+      if (!validPassword) return res.status(401).json({ error: 'Contraseña incorrecta' });
+
+      const token = jwt.sign({ idUsuario: user.idUsuario, correo: user.correo ?? userEmail }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      res.json({
+        message: '✅ Inicio de sesión exitoso',
+        token,
+        usuario: {
+          idUsuario: user.idUsuario,
+          nombreCompleto: user.nombreCompleto,
+          correo: user.correo ?? userEmail
+        }
+      });
+    } catch (error) {
+      console.error('Error al iniciar sesión:', error);
+      res.status(500).json({ error: 'Error al iniciar sesión' });
+    }
+  }
+
+  async solicitarRestablecimiento(req, res) {
+    try {
+      const { correo, email } = req.body;
+      const userEmail = correo || email;
+      if (!userEmail) return res.status(400).json({ error: 'Falta el correo' });
+
+      const user = await UserModel.findByEmail(userEmail);
+      // Respuesta genérica para no filtrar existencia de emails
+      if (!user) return res.status(200).json({ message: 'Si el correo existe, recibirás un enlace para restablecer tu contraseña.' });
+
+      const token = jwt.sign({ idUsuario: user.idUsuario }, process.env.JWT_SECRET, { expiresIn: '1h' });
+
+      const mailOptions = {
+        from: process.env.GMAIL_USER || 'molerojesus69@gmail.com',
+        to: user.correo,
         subject: 'Restablecer Contraseña',
         html: `Haz clic en este enlace para restablecer tu contraseña: <a href="http://localhost:5500/reset-password.html?token=${token}">Restablecer Contraseña</a>`
-    };
-    await transporter.sendMail(mailOptions);
-    res.status(200).json({ msg: 'Si el correo electrónico existe, recibirás un enlace para restablecer tu contraseña.' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al enviar el correo de restablecimiento' });
+      };
+
+      await transporter.sendMail(mailOptions);
+
+      res.status(200).json({ message: 'Si el correo existe, recibirás un enlace para restablecer tu contraseña.' });
+    } catch (error) {
+      console.error('Error al enviar el correo de restablecimiento:', error);
+      res.status(500).json({ error: 'Error al enviar el correo de restablecimiento' });
+    }
+  }
+
+  async restablecerContraseña(req, res) {
+    try {
+      const { token, newPassword } = req.body;
+      if (!token || !newPassword) return res.status(400).json({ error: 'Faltan campos' });
+
+      const decoded = jwt.verify(token, process.env.JWT_SECRET);
+      const user = await UserModel.findById(decoded.idUsuario);
+      if (!user) return res.status(400).json({ error: 'Token inválido o expirado.' });
+
+      const hashedPassword = await bcrypt.hash(newPassword, 10);
+      await UserModel.updatePassword(user.idUsuario, hashedPassword);
+
+      res.status(200).json({ message: 'Contraseña actualizada exitosamente.' });
+    } catch (error) {
+      console.error('Error al restablecer la contraseña:', error);
+      res.status(500).json({ error: 'Error al restablecer la contraseña' });
+    }
   }
 }
 
-export async function restablecerContraseña(req, res) {
-  try {
-    const { token, newPassword } = req.body;
-    const decoded = jwt.verify(token, process.env.JWT_SECRET);
-    const user = await User.findByPk(decoded.id);
-    if (!user) {
-      return res.status(400).json({ msg: 'Token inválido o expirado.' });
-    }
-    const hashedPassword = await bcrypt.hash(newPassword, 10);
-    user.password = hashedPassword;
-    await user.save();
-    res.status(200).json({ msg: 'Contraseña actualizada exitosamente.' });
-  } catch (error) {
-    console.error(error);
-    res.status(500).json({ error: 'Error al restablecer la contraseña' });
-  }
-}
+export const authController = new AuthController();

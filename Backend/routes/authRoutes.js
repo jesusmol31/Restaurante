@@ -1,16 +1,23 @@
 import express from 'express';
-import { 
-  registrarUsuario, 
-  iniciarSesion, 
-  solicitarRestablecimiento, 
-  restablecerContraseña 
-} from '../Controllers/authController.js';
+import { authController } from '../Controllers/authController.js';
 
-const router = express.Router();
+export class AuthRoutes {
+  constructor() {
+    this.router = express.Router();
+    this.init();
+  }
 
-router.post('/register', registrarUsuario);
-router.post('/login', iniciarSesion);
-router.post('/forgot-password', solicitarRestablecimiento);
-router.post('/reset-password', restablecerContraseña);
+  init() {
+    this.router.post('/register', (req, res) => authController.registrarUsuario(req, res));
+    this.router.post('/login', (req, res) => authController.iniciarSesion(req, res));
+    this.router.post('/forgot-password', (req, res) => authController.solicitarRestablecimiento(req, res));
+    this.router.post('/reset-password', (req, res) => authController.restablecerContraseña(req, res));
+  }
 
-export default router;
+  getRouter() {
+    return this.router;
+  }
+}
+
+export default new AuthRoutes().getRouter();
+

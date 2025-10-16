@@ -1,0 +1,39 @@
+# Node / JS
+node_modules/
+npm-debug.log*
+yarn-error.log
+.pnp/
+
+# React Native / Expo
+.expo/
+.expo-shared/
+android/app/build/
+android/.gradle/
+ios/Pods/
+ios/build/
+
+# Android
+.gradle/
+local.properties
+*.keystore
+
+# iOS
+build/
+*.xcworkspace
+DerivedData/
+*.xcuserstate
+
+# Env / keys
+.env
+.env.*.local
+
+# IDEs / OS
+.vscode/
+.idea/
+*.iml
+.DS_Store
+Thumbs.db
+
+# Coverage / misc
+coverage/
+*.log
