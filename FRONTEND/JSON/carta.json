@@ -1,0 +1,157 @@
+{
+  "productos": [
+    {
+      "idProducto": 1,
+      "idCategoriaMenu": 1,
+      "nombre": "Ensalada César",
+      "precio": 12.50,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 2,
+      "idCategoriaMenu": 1,
+      "nombre": "Sopa de verduras",
+      "precio": 10.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 3,
+      "idCategoriaMenu": 1,
+      "nombre": "Tequeños",
+      "precio": 8.00,
+      "idEstadoProducto": 2,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 4,
+      "idCategoriaMenu": 1,
+      "nombre": "Causa limeña",
+      "precio": 11.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 5,
+      "idCategoriaMenu": 2,
+      "nombre": "Lomo saltado",
+      "precio": 22.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 6,
+      "idCategoriaMenu": 2,
+      "nombre": "Ají de gallina",
+      "precio": 18.50,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 7,
+      "idCategoriaMenu": 2,
+      "nombre": "Arroz con pollo",
+      "precio": 17.00,
+      "idEstadoProducto": 2,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 8,
+      "idCategoriaMenu": 2,
+      "nombre": "Bistec a lo pobre",
+      "precio": 23.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 9,
+      "idCategoriaMenu": 2,
+      "nombre": "Tallarin saltado",
+      "precio": 19.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 10,
+      "idCategoriaMenu": 2,
+      "nombre": "Pollo a la plancha",
+      "precio": 16.50,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 11,
+      "idCategoriaMenu": 2,
+      "nombre": "Seco de res con frijoles",
+      "precio": 21.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 12,
+      "idCategoriaMenu": 2,
+      "nombre": "Pescado frito con yuca",
+      "precio": 20.00,
+      "idEstadoProducto": 2,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 13,
+      "idCategoriaMenu": 3,
+      "nombre": "Chicha morada",
+      "precio": 5.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 14,
+      "idCategoriaMenu": 3,
+      "nombre": "Limonada",
+      "precio": 4.50,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 15,
+      "idCategoriaMenu": 3,
+      "nombre": "Coca Cola 500ml",
+      "precio": 6.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 16,
+      "idCategoriaMenu": 3,
+      "nombre": "Agua mineral",
+      "precio": 3.50,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 17,
+      "idCategoriaMenu": 3,
+      "nombre": "Jugo de papaya",
+      "precio": 5.50,
+      "idEstadoProducto": 2,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    },
+    {
+      "idProducto": 18,
+      "idCategoriaMenu": 3,
+      "nombre": "Café americano",
+      "precio": 6.00,
+      "idEstadoProducto": 1,
+      "imagenProducto": "https://buenazo.cronosmedia.glr.pe/original/2022/10/24/60d89da6913c240e6725db08.jpg"
+    }
+  ],
+  "categoriasMenu": [
+    { "idCategoriaMenu": 1, "nombreCategoria": "Entrada" },
+    { "idCategoriaMenu": 2, "nombreCategoria": "Segundo" },
+    { "idCategoriaMenu": 3, "nombreCategoria": "Bebida" }
+  ],
+  "estadosProducto": [
+    { "idEstadoProducto": 1, "nombreEstadoProducto": "Disponible" },
+    { "idEstadoProducto": 2, "nombreEstadoProducto": "No disponible" }
+  ]
+}
