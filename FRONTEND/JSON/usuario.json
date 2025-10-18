@@ -1,0 +1,17 @@
+{
+  "usuario": 
+    {
+      "idUsuario": 1,
+      "idRolUsuario": 1,
+      "nombreCompleto": "Adrián Eduardo Armas Rodríguez",
+      "correo": "adrian.armas@example.com",
+      "telefono": "987654321",
+      "contraseña": "adrian123",
+      "imagenPerfil": "https://cdn-icons-png.flaticon.com/512/456/456212.png",
+      "rolUsuario": {
+        "idRolUsuario": 1,
+        "nombreRol": "Cliente"
+      }
+    }
+  
+}
