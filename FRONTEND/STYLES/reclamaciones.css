@@ -1,0 +1,96 @@
+
+
+.contenedor-reclamo {
+  max-width: 700px;
+  background-color: var(--light);
+  padding: 30px;
+  box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+  display: flex;
+  width: 100%;
+  flex-direction: column;
+  padding-top: 80px;
+  padding-bottom: 100px;
+}
+
+h1 {
+  color: var(--naranja);
+  text-align: center;
+  margin-bottom: 10px;
+  font-size: 1.1rem;
+}
+
+.descripcion {
+  text-align: center;
+  color: var(--dark);
+  margin-bottom: 30px;
+  font-size: 0.95rem;
+}
+
+.form-reclamo {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.grupo-input {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.grupo-input label {
+  font-weight: 600;
+  color: var(--texto);
+  margin-bottom: 5px;
+}
+
+.grupo-input input,
+.grupo-input select,
+.grupo-input textarea {
+  padding: 10px;
+  border-radius: 8px;
+  border: 1px solid var(--gray);
+  font-size: 0.95rem;
+  transition: border-color 0.2s ease;
+}
+
+.grupo-input input:focus,
+.grupo-input select:focus,
+.grupo-input textarea:focus {
+  border-color: var(--naranja);
+  outline: none;
+}
+
+.grupo-doble {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.grupo-doble .grupo-input {
+  width: 100%;
+}
+.grupo-doble .grupo-input input, .grupo-doble .grupo-input select{
+  width: 100%;
+}
+
+.boton-enviar {
+  text-align: center;
+  margin-top: 10px;
+}
+
+.boton-enviar button {
+  background-color: var(--naranja);
+  color: var(--light);
+  font-size: 1rem;
+  padding: 12px 25px;
+  border: none;
+  border-radius: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.boton-enviar button:hover {
+  background-color: var(--naranja);
+}

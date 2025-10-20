@@ -1,0 +1,38 @@
+/* ====== PALETA ====== */
+:root {
+  --primary: #E63946;
+  --dark: #2d3142;
+  --light: #ffffff;
+  --gray: #bfc0c0;
+  --success: #4caf50;
+  --error: #e63946;
+  --crema: #FFF8F0;
+  --naranja: #E13F12
+}
+
+/* ====== ESTILO GENERAL ====== */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family:"Inter", "Roboto", system-ui, -apple-system, "Segoe UI", Arial; -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+  font-size: 16px;
+}
+
+body{
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    height: fit-content;
+    position: relative;
+    height: 100dvh;
+    background-color: var(--crema);
+}
+
+/* MAIN */
+.main{
+    width: 100%;
+    height: fit-content;
+    display: flex;
+    flex: 1;
+} 

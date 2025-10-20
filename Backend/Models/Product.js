@@ -6,12 +6,9 @@ export class ProductModel {
     try {
       const sql = `
         SELECT p.idProducto, p.nombre, p.precio, p.imagenProducto,
-               c.nombreCategoria AS categoria,
-               e.nombreEstadoProducto AS estado
+                p.idCategoriaMenu, p.idEstadoProducto
         FROM Producto p
-        JOIN CategoriaMenu c ON p.idCategoriaMenu = c.idCategoriaMenu
-        JOIN EstadoProducto e ON p.idEstadoProducto = e.idEstadoProducto
-        ORDER BY p.nombre
+        ORDER BY p.nombre;
       `;
       const [rows] = await db.query(sql);
       return rows;
