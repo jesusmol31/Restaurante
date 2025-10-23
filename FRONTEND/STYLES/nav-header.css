@@ -152,4 +152,6 @@ body{
     padding: 13px;
     width: 100%;
     font-size: 0.85rem;
+    text-decoration: none;
+    text-align: center;
 }

@@ -4,67 +4,70 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="stylesheet" href="cliente-pedido.css">
+    <link rel="stylesheet" href="../STYLES/cliente-pedido.css">
     <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined" rel="stylesheet" />
 </head>
 <body>
     <header class="header">
         <label for="">checkout</label>
-        <span class="material-symbols-outlined">
+        <a href="../index.html">
+            <span class="material-symbols-outlined">
             arrow_back
         </span>
+        </a>
     </header>
     <div class="datos-container">
         <h2>Datos del cliente:</h2>
         <div class="datos-cliente__container">
             <div class="dato-cliente">
-                <label for="">Nombres:</label>
-                <input type="text">
+                <label for="" id="nombre-title-pedido">Nombres:</label>
+                <input type="text" id="nombre-pedido">
             </div>
             <div class="dato-cliente">
-                <label for="">Apellidos:</label>
-                <input type="text">
+                <label for="" id="apellido-title-pedido">Apellidos:</label>
+                <input type="text" id="apellido-pedido">
             </div>
             <div class="dato-cliente">
-                <label for="">DNI:</label>
-                <input type="text">
+                <label for="" id="dni-title-pedido">DNI:</label>
+                <input type="text" id="dni-pedido">
             </div>
             <div class="dato-cliente">
-                <label for="">Correo Electronico:</label>
-                <input type="text">
+                <label for="" id="correo-title-pedido">Correo Electronico:</label>
+                <input type="text" id="correo-pedido">
             </div>
             <div class="dato-cliente">
-                <label for="">Telfono:</label>
-                <input type="text">
+                <label for="" id="telefono-title-pedido">Telfono:</label>
+                <input type="text" id="telefono-pedido">
             </div>
         </div>
         <h2>Comprobante de pago:</h2>
         <div class="comprobantes-container">
             <div class="comprobante">
                 <label for="boleta-elec" id="">Boleta electronica</label>
-                <input type="checkbox" id="boleta-elec">
+                <input type="checkbox" id="boleta-elec" class="input-checkbox">
             </div>
             <div class="comprobante">
-                <label for="boleta-simple">Boleta electronica</label>
-                <input type="checkbox" id="boleta-simple">
+                <label for="boleta-simple">Boleta simple</label>
+                <input type="checkbox" id="boleta-simple" class="input-checkbox">
             </div>
             <div class="comprobante">
-                <label for="factura">Boleta electronica</label>
-                <input type="checkbox" id="factura">
+                <label for="factura">Factura</label>
+                <input type="checkbox" id="factura" class="input-checkbox">
             </div>
         </div>
         <h2>Delivery a:</h2>
         <div class="delivery-container">
-            <label for="">Ingrese la direccion</label>
-            <input type="text">
+            <label for="" id="direccion-title-pedido">Ingrese la direccion</label>
+            <input type="text" id="input-direccion">
         </div>
         <div class="politica-container">
-            <input type="checkbox">
+            <input type="checkbox" id="input-politica">
             <label for="">Acepto la <span>Politica de Privacidad de datos</span> y los <span>Terminos y Condiciones</span></label>
         </div>
     </div>
     <div class="btn-continuar__container">
-        <button>Continuar</button>
+        <button class="btn-continuar">Continuar</button>
     </div>
+    <script src="../JS/cliente-pedido.js"></script>
 </body>
 </html>

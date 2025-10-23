@@ -45,9 +45,11 @@ body{
     font-size: 1.2rem;
     margin-bottom: 5px;
 }
-.header span{
+.header a{
     position: absolute;
     left: 15px;
+}
+.header span{
     color: var(--light);
 }
 .datos-container{
@@ -89,15 +91,22 @@ body{
 }
 .dato-cliente label{
     position: absolute;
-    padding-left: 15px;
+    left: 10px;
     color: #666;
+    padding: 0 5px;
+    font-size: 1rem;
     font-weight: 400;
+    background-color: transparent;
+    transition-property: transform,font-size,background-color;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
 }
 .dato-cliente input{
     width: 100%;
     padding: 12px;
     border-radius: 10px;
     border: 1px solid var(--gray);
+    outline: none;
 }
 .comprobantes-container{
     width: 100%;
@@ -140,14 +149,22 @@ body{
 }
 .delivery-container label{
     position: absolute;
-    padding-left: 15px;
+    left: 10px;
     color: #666;
+    padding: 0 5px;
+    font-size: 1rem;
+    font-weight: 400;
+    background-color: transparent;
+    transition-property: transform,font-size,background-color;
+    transition-duration: 1s;
+    transition-timing-function: ease-in-out;
 }
 .delivery-container input{
     width: 100%;
     padding: 12px;
     border: 1px solid var(--gray);
     border-radius: 10px;
+    outline: none;
 }
 .btn-continuar__container{
     width: 100%;

@@ -1,0 +1,19 @@
+{
+  "pedido": 
+    {
+      "idPedido": 2,
+      "idUsuario": 1,
+      "idCliente": 1,
+      "nombreReceptor": "Adrian Eduardo",
+      "apellidoReceptor": "Armas Rodriguez",
+      "correoReceptor": "aarmasro01@gmail.com",
+      "telefonoReceptor": "934958688",
+      "fechaPedido": "23/10/2025",
+      "horaPedido": "02:20:00",
+      "estadoPedido": 1,
+      "tipoComprobante": "boleta simple",
+      "idPago": 5
+    }
+  
+}
+

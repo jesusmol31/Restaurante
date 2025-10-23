@@ -1,0 +1,13 @@
+{
+  "cliente": 
+    {
+      "idCliente": 1,
+      "idUsuario": 1,
+      "nombreCompleto": "Adrián Eduardo Armas Rodríguez",
+      "correo": "adrian.armas@example.com",
+      "telefono": "987654321"
+    }
+  
+}
+
+

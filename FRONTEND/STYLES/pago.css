@@ -121,6 +121,15 @@ h2{
     justify-content: space-between;
     /* background-color: hsla(17, 100%, 50%, 0.24); */
 }
+.metodo div{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+}
+.metodo input{
+    accent-color: var(--naranja);
+}
 .metodo label{
     font-size: 0.9rem;
     font-weight: bold;
@@ -138,18 +147,17 @@ h2{
 .captura{
     width: 100%;
     display: flex;
-    height: 0;
     flex-direction: column;
     gap: 20px;
     padding: 15px;
     border-radius: 10px;
     border: 1px solid #ccc;
 }
-.captura-yape label{
+.captura label{
     font-size: 0.8rem;
     font-weight: bold;
 }
-.captura-yape  input{
+.captura  input{
     display: flex;
     flex-direction: column;
     font-size: 0.8rem;
@@ -166,6 +174,7 @@ h2{
     display: flex;
     flex-direction: column;
     gap: 10px;
+    position: relative;
 }
 .resumen-compra__container h3{
     color: var(--naranja);
@@ -218,6 +227,7 @@ h2{
 
 .background-gracias-por-su-compra{
     position: fixed;
+    opacity: 0;
     width: 100%;
     height: 100%;
     top: 0;
@@ -228,6 +238,9 @@ h2{
     align-items: center;
     justify-content: center;
     padding: 20px;
+    transition-property: opacity;
+    transition-duration: 0.5s;
+    transition-timing-function: ease-in-out;
 }
 .gracias-container{
     width: 100%;
@@ -268,4 +281,79 @@ h2{
 .gracias-container img{
     width: 100%;
     max-width: 250px;
+}
+
+.resumen-carrito__container{
+    width: 100%;
+    height:0px;
+    opacity: 0;
+    display: none;
+    flex-direction: column;
+    align-items: 10px;
+    gap: 10px;
+    border-bottom: 1px solid #ccc;
+    position: relative;
+    transition-property: height,opacity;
+    transition-duration: 0.3s;
+    transition-timing-function: ease-in-out;
+}
+.resumen-compra__container span{
+    position: absolute;
+    top: 18px;
+    right: 0;
+    /* transform: rotate(180deg); */
+}
+.resumen-compra__container .active{
+    transform: rotate(180deg);
+}
+.producto-resumen{
+    width: 100%;
+    height: 80px;
+    display: grid;
+    grid-template-columns: 3fr 1fr;
+    grid-template-rows: 1fr;
+    align-items: center;
+}
+.img-nombre__producto-resumen{
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-start;
+    gap: 10px;
+}
+.imge-container__producto-resumen{
+    width: 80px;
+    height: 100%;
+    overflow: hidden;
+    border-radius: 3px;
+}
+.imge-container__producto-resumen img{
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    object-position: center;
+}
+.img-nombre__producto-resumen label{
+    font-size: 0.9rem;
+    color: var(--dark);
+    text-wrap: wrap;
+}
+.precio__producto-resumen{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 100%;
+}
+.precio__producto-resumen label{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: flex-end;
+    font-size: 0.9rem;
+    color: var(--dark);
 }
