@@ -102,4 +102,15 @@ export class UserModel {
       throw err;
     }
   }
+
+  static async getUltimoUsuarioId() {
+    try {
+      const sql = `SELECT \`${this.idCol()}\` FROM \`${this.table()}\` ORDER BY \`${this.idCol()}\` DESC LIMIT 1`;
+      const [rows] = await db.query(sql);
+      return rows.length ? rows[0][this.idCol()] : null;
+    } catch (err) {
+      console.error('UserModel.getUltimoUsuarioId error:', err);
+      throw err;
+    }
+  }
 }

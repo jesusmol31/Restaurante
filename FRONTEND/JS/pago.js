@@ -179,6 +179,7 @@ btnFinalizar.addEventListener("click",async()=>{
         return
     }
     const pago = crearPago()
+    console.log(pago)
     await registrarPago(pago);
     await obtenerIdPago();
     const pedido = await crearPedido()
@@ -198,20 +199,19 @@ const cliente = JSON.parse(localStorage.getItem("clientePedido"))
 console.log(cliente);
 
 const fecha = new Date()
-console.log(fecha)
+console.log(fecha.toLocaleDateString())
 
 function crearPago(){
     const pago = {
-        "idPago": 1,
-        "metodoDePago": metodoDePago,
-        "comprobanteDePago": inputCaptura.files[0].name,
-        "fechaDePago": fecha
+        "metodoPago": metodoDePago,
+        "comprobantePago": inputCaptura.files[0].name,
+        "fechaPago": fecha
     }
     return pago
 }
 async function registrarPago(pago) {
     try {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/posts`,{
+        const res = await fetch("http://localhost:5000/api/pagos/register",{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(pago)
@@ -220,11 +220,11 @@ async function registrarPago(pago) {
         const data = await res.json()
         console.log(data)
 
-        // if (response.ok) {
-        //     alert(data.message);
-        // }else{
-        //     alert(data.error)
-        // }
+        if (res.ok) {
+            console.log(data.message);
+        }else{
+            console.log(data.error)
+        }
 
     } catch (error) {
         console.log(error)
@@ -232,29 +232,30 @@ async function registrarPago(pago) {
 }
 
 async function obtenerIdPago() {
-    const res = await fetch(`../JSON/pago.json`);
+    const res = await fetch(`http://localhost:5000/api/pagos/ultimo`);
     const data = await res.json()
 
-    const idPago = data.pago.idPago
+    const idPago = data.idPago
 
     return idPago
 }
 
 const fechaPedido = new Date()
-console.log(fecha)
+console.log(fechaPedido.toLocaleDateString())
 
 async function crearPedido() {
     const pedido = {
         "idUsuario": cliente.idUsuario,
         "idCliente": cliente.idCliente,
         "nombreReceptor": cliente.nombres,
-        "apellidoReceptor": cliente.apellidos,
+        "apellidosReceptor": cliente.apellidos,
         "correoReceptor": cliente.correo,
         "telefonoReceptor": cliente.telefono,
-        "fechaPedido": fechaPedido.toLocaleDateString(),
-        "horaPedido": fechaPedido.toLocaleTimeString(),
-        "estadoPedido": 1,
-        "tipoComprobante": "boleta simple",
+        "direccionEntrega": cliente.direccion,
+        "fecha": fechaPedido.toISOString().split('T')[0],
+        "hora": fechaPedido.toLocaleTimeString(),
+        "idEstadoPedido": 1,
+        "tipoComprobantePago": cliente.comprobante,
         "idPago": await obtenerIdPago()
     }
 
@@ -263,7 +264,7 @@ async function crearPedido() {
 
 async function registrarPedido(pedido) {
     try {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/posts`,{
+        const res = await fetch(`http://localhost:5000/api/pedidos/register`,{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(pedido)
@@ -272,11 +273,11 @@ async function registrarPedido(pedido) {
         const data = await res.json()
         console.log(data);
 
-        // if(response.ok){
-        //     alert(data.message);
-        // }else{
-        //     alert(data.error)
-        // }
+        if(res.ok){
+            console.log(data.message);
+        }else{
+            console.log(data.error)
+        }
     } catch (error) {
         console.log(error)
     }
@@ -284,24 +285,24 @@ async function registrarPedido(pedido) {
 }
 
 async function obtenerIdPedido() {
-    const res = await fetch(`../JSON/pedido.json`)
+    const res = await fetch(`http://localhost:5000/api/pedidos/ultimo`)
     const data = await res.json();
 
-    const idPedido = data.pedido.idPedido
+    const idPedido = data.idPedido
 
     console.log(idPedido)
     return idPedido
 }
 
 
+
 async function crearDetallePedido(producto) {
     const detalle = {
-        "idDetallePedido": 3,
         "idPedido": await obtenerIdPedido(),
         "idProducto": producto.idProducto,
         "precioUnitario": producto.precio,
         "cantidad": producto.cantidad,
-        "subTotal": producto.precio * producto.cantidad
+        "subtotal": producto.precio * producto.cantidad
     }
     console.log(detalle)
     return detalle
@@ -309,7 +310,7 @@ async function crearDetallePedido(producto) {
 console.log(carrito)
 async function registrarDetalle(detalle) {
     try {
-        const res = await fetch(`https://jsonplaceholder.typicode.com/posts`,{
+        const res = await fetch(`http://localhost:5000/api/detalles/register`,{
             method: "POST",
             headers: {"Content-Type": "application/json"},
             body: JSON.stringify(detalle)
@@ -318,11 +319,11 @@ async function registrarDetalle(detalle) {
 
         console.log(data)
 
-        // if(response.ok){
-        //     alert(data.message)
-        // }else{
-        //     alert(data.error)
-        // }
+        if(res.ok){
+            console.log(data.message)
+        }else{
+            console.log(data.error)
+        }
     } catch (error) {
         console.log(error)
     }

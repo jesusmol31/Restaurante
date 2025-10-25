@@ -16,6 +16,9 @@ const inputDireccion = document.getElementById("direccion");
 const inputMonto = document.getElementById("monto");
 const inputDetalle = document.getElementById("detalle");
 
+const usuario = JSON.parse(localStorage.getItem("usuario"))
+console.log(usuario.idUsuario)
+
 function verificar(){
     if(inpuNombre.value === "" || inputCorreo.value === "" || inputTelefono.value === "" || selectTipoDocumento.value === "" || inputNumDocumento.value === "" || inputNumPedido.value === "" || inputFechaPedido.value === "" || selectTipoSolicitud.value === "" || inputDepartamento.value === "" || inputProvincia.value === "" || inputDistrito.value === "" || inputDireccion.value === "" || inputMonto.value === "" || inputDetalle.value === ""){
         alert("Rellenar todos los campos")
@@ -30,30 +33,40 @@ formReclamo.addEventListener("submit",async(e)=>{
     verificar();
 
     const reclamo = {
+        "idUsuario": usuario.idUsuario,
         "nombreCompleto": inpuNombre.value,
         "correo": inputCorreo.value,
         "telefono": inputTelefono.value,
         "tipoDocumento": selectTipoDocumento.value,
         "numDocumento": inputNumDocumento.value,
-        "fechaPedido": inputFechaPedido.value,
-        "tipoSolicitud": selectTipoSolicitud.value,
         "departamento": inputDepartamento.value,
         "provincia": inputProvincia.value,
         "distrito": inputDistrito.value,
         "direccion": inputDireccion.value,
         "montoReclamo": inputMonto.value,
+        "numPedido": inputNumPedido.value,
+        "fechaPedido": inputFechaPedido.value,
+        "tipoSolicitud": selectTipoSolicitud.value,
         "detalles": inputDetalle.value
     }
 
-    const res = await fetch(`https://jsonplaceholder.typicode.com/posts`,{
+    try {
+        const res = await fetch(`http://localhost:5000/api/reclamos/register`,{
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(reclamo)
-    })
+        })
 
-    const data = await res.json();
-
-    console.log(data)
+        const data = await res.json();
+        console.log(data)
+        if(res.ok){
+            alert.log(data.message)
+        }else{
+            console.log(data.error)
+        }
+    } catch (error) {
+        console.log(error)
+    }
 })
 
 })()

@@ -124,6 +124,19 @@ class AuthController {
       res.status(500).json({ error: 'Error al restablecer la contraseña' });
     }
   }
+
+  async obtenerUltimoUsuario(req, res) {
+  try {
+    const idUltimoUsuario = await UserModel.getUltimoUsuarioId();
+    if (!idUltimoUsuario) {
+      return res.status(404).json({ error: 'No hay usuarios registrados' });
+    }
+    res.json({ idUsuario: idUltimoUsuario });
+  } catch (error) {
+    console.error('Error al obtener el último usuario:', error);
+    res.status(500).json({ error: 'Error al obtener el último usuario' });
+  }
+}
 }
 
 export const authController = new AuthController();

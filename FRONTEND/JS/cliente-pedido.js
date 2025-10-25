@@ -124,25 +124,27 @@ inputDireccion.addEventListener("input",()=>{
 
 const usuario = JSON.parse(localStorage.getItem("usuario"));
 let idUsuario = usuario.idUsuario
+console.log(idUsuario)
 
 
-async function obtenerIdCliente() {
-    const res = await fetch(`../JSON/cliente.json`)
+async function obtenerIdCliente(idUsuario) {
+    const res = await fetch(`http://localhost:5000/api/clientes/usuario/${idUsuario}`)
     const data = await res.json()
 
-    const idCliente = data.cliente.idCliente
+    // const idCliente = data.cliente.idCliente
     
-    return idCliente
+    console.log(data.idCliente)
+    return data.idCliente
 }
 
-obtenerIdCliente()
+// obtenerIdCliente(idUsuario)
 
 
 
  async function crearCliente(){
     const cliente = {
     "idUsuario": idUsuario,
-    "idCliente": await obtenerIdCliente(),
+    "idCliente": await obtenerIdCliente(idUsuario),
     "nombres": nombreCliente,
     "apellidos": apellidoCliente,
     "dni": dniCliente,

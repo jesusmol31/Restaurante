@@ -3,6 +3,11 @@ import cors from 'cors';
 import { connectDB } from './config/db.js';
 import authRoutes from './routes/authRoutes.js';
 import productRoutes from './routes/productRoutes.js';
+import clienteRoutes from './routes/clienteRoutes.js';
+import pagoRoutes from './routes/pagoRoutes.js';
+import pedidoRoutes from './routes/pedidoRoutes.js'
+import detallePedidoRoutes from './routes/detallePedidoRoutes.js'
+import reclamoRoutes from './routes/reclamoRoutes.js'
 
 class App {
   constructor() {
@@ -36,6 +41,11 @@ class App {
   setupRoutes() {
     this._mountRouter('/api/auth', authRoutes);
     this._mountRouter('/api/products', productRoutes);
+    this._mountRouter('/api/clientes', clienteRoutes);
+    this._mountRouter('/api/pagos', pagoRoutes);
+    this._mountRouter('/api/pedidos', pedidoRoutes);
+    this._mountRouter('/api/detalles', detallePedidoRoutes);
+    this._mountRouter('/api/reclamos', reclamoRoutes);
   }
 
   async start() {

@@ -83,6 +83,10 @@ img{
     justify-content: center;
     gap: 15px;
 }
+#recuperar-contraseña{
+    text-decoration: none;
+    color: var(--dark);
+}
 #crear-cuenta{
     color: var(--naranja);
     text-decoration: none;

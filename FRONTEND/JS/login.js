@@ -27,6 +27,7 @@ loginForm.addEventListener('submit', async (e) => {
         if (response.ok) {
             localStorage.setItem('token', data.token);
             localStorage.setItem('usuario', JSON.stringify(data.usuario));
+            localStorage.setItem('carrito', JSON.stringify([]));
             alert(data.message || data.msg || 'Inicio de sesión exitoso!');
             window.location.href = 'index.html';
         } else {
