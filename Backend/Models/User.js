@@ -7,7 +7,8 @@ const SCHEMA = {
   nameCol: 'nombreCompleto',
   emailCol: 'correo',
   phoneCol: 'telefono',
-  passwordCol: 'contraseña' 
+  passwordCol: 'contraseña',
+  imageCol: 'imagenPerfil'
 };
 
 export class UserModel {
@@ -18,10 +19,11 @@ export class UserModel {
   static emailCol() { return SCHEMA.emailCol; }
   static phoneCol() { return SCHEMA.phoneCol; }
   static passwordCol() { return SCHEMA.passwordCol; }
+  static imageCol() { return SCHEMA.imageCol; }
 
   static async findByEmail(email) {
     try {
-      const sql = `SELECT \`${this.idCol()}\`, \`${this.roleCol()}\`, \`${this.nameCol()}\` AS nombreCompleto, \`${this.emailCol()}\`, \`${this.phoneCol()}\`, \`${this.passwordCol()}\` AS password FROM \`${this.table()}\` WHERE \`${this.emailCol()}\` = ? LIMIT 1`;
+      const sql = `SELECT \`${this.idCol()}\`, \`${this.roleCol()}\`, \`${this.nameCol()}\` AS nombreCompleto, \`${this.emailCol()}\`, \`${this.phoneCol()}\`, \`${this.passwordCol()}\` AS password, \`${this.imageCol()}\` AS imagenPerfil FROM \`${this.table()}\` WHERE \`${this.emailCol()}\` = ? LIMIT 1`;
       const [rows] = await db.query(sql, [email]);
       const row = rows[0] ?? null;
       if (!row) return null;
@@ -31,6 +33,7 @@ export class UserModel {
         nombreCompleto: row.nombreCompleto,
         correo: row[this.emailCol()],
         telefono: row[this.phoneCol()],
+        imagenPerfil: row.imagenPerfil ?? 'incognito.png',
         // devolver ambas propiedades para compatibilidad con el resto del código
         contrasena: row.password,
         password: row.password
@@ -41,7 +44,7 @@ export class UserModel {
     }
   }
 
-  static async create({ idRolUsuario = null, nombreCompleto, correo, contrasena, telefono = null }) {
+  static async create({ idRolUsuario = null, nombreCompleto, correo, contrasena, telefono = null, imagenPerfil = 'incognito.png' }) {
     try {
       // resolver idRolUsuario válido
       let roleId = idRolUsuario;
@@ -59,8 +62,8 @@ export class UserModel {
         }
       }
 
-      const sql = `INSERT INTO \`${this.table()}\` (\`${this.roleCol()}\`, \`${this.nameCol()}\`, \`${this.emailCol()}\`, \`${this.phoneCol()}\`, \`${this.passwordCol()}\`) VALUES (?, ?, ?, ?, ?)`;
-      const [result] = await db.query(sql, [roleId, nombreCompleto, correo, telefono, contrasena]);
+      const sql = `INSERT INTO \`${this.table()}\` (\`${this.roleCol()}\`, \`${this.nameCol()}\`, \`${this.emailCol()}\`, \`${this.phoneCol()}\`, \`${this.passwordCol()}\`, \`${this.imageCol()}\`) VALUES (?, ?, ?, ?, ?, ?)`;
+      const [result] = await db.query(sql, [roleId, nombreCompleto, correo, telefono, contrasena, imagenPerfil]);
       return result.insertId;
     } catch (err) {
       console.error('UserModel.create error:', err);
@@ -96,6 +99,17 @@ export class UserModel {
       return result.affectedRows > 0;
     } catch (err) {
       console.error('UserModel.updatePassword error:', err);
+      throw err;
+    }
+  }
+
+  static async getUltimoUsuarioId() {
+    try {
+      const sql = `SELECT \`${this.idCol()}\` FROM \`${this.table()}\` ORDER BY \`${this.idCol()}\` DESC LIMIT 1`;
+      const [rows] = await db.query(sql);
+      return rows.length ? rows[0][this.idCol()] : null;
+    } catch (err) {
+      console.error('UserModel.getUltimoUsuarioId error:', err);
       throw err;
     }
   }

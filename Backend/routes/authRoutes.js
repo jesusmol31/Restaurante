@@ -12,6 +12,7 @@ export class AuthRoutes {
     this.router.post('/login', (req, res) => authController.iniciarSesion(req, res));
     this.router.post('/forgot-password', (req, res) => authController.solicitarRestablecimiento(req, res));
     this.router.post('/reset-password', (req, res) => authController.restablecerContraseña(req, res));
+    this.router.get('/ultimo', (req, res) => authController.obtenerUltimoUsuario(req, res));
   }
 
   getRouter() {

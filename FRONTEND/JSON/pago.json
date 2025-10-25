@@ -1,0 +1,11 @@
+{
+  "pago": 
+    {
+      "idPago": 1,
+      "metodoPago": "Yape",
+      "comprobantePago": "captura.jpg",
+      "fechaPago": "23/10/2025"
+    }
+  
+}
+

@@ -1,0 +1,97 @@
+<section class="contenedor-reclamo">
+    <h1>Libro de Reclamaciones</h1>
+    <p class="descripcion">
+      Estimado cliente, complete el siguiente formulario para registrar su reclamo o queja.
+    </p>
+
+    <form class="form-reclamo">
+
+      <div class="grupo-input">
+        <label for="nombre">Nombre completo</label>
+        <input type="text" id="nombre" placeholder="Ingrese su nombre completo" required>
+      </div>
+
+      <div class="grupo-input">
+        <label for="correo">Correo electrónico</label>
+        <input type="email" id="correo" placeholder="ejemplo@correo.com" required>
+      </div>
+
+      <div class="grupo-input">
+        <label for="telefono">Teléfono</label>
+        <input type="tel" id="telefono" placeholder="987654321" required>
+      </div>
+
+      <div class="grupo-doble">
+        <div class="grupo-input">
+          <label for="tipoDocumento">Tipo de documento</label>
+          <select id="tipoDocumento" required>
+            <option value="">Seleccione...</option>
+            <option>DNI</option>
+            <option>Carnet de Extranjería</option>
+            <option>Pasaporte</option>
+          </select>
+        </div>
+
+        <div class="grupo-input">
+          <label for="numDocumento">N° Documento</label>
+          <input type="text" id="numDocumento" placeholder="12345678" required>
+        </div>
+      </div>
+
+      <div class="grupo-doble">
+        <div class="grupo-input">
+          <label for="numPedido">N° de Pedido</label>
+          <input type="text" id="numPedido" placeholder="Ej: PED-045" required>
+        </div>
+
+        <div class="grupo-input">
+          <label for="fechaPedido">Fecha del Pedido</label>
+          <input type="date" id="fechaPedido" required>
+        </div>
+      </div>
+
+      <div class="grupo-input">
+        <label for="tipoReclamo">Tipo de solicitud</label>
+        <select id="tipoReclamo" required>
+          <option value="">Seleccione...</option>
+          <option value="Reclamo">Reclamo</option>
+          <option value="Queja">Queja</option>
+        </select>
+      </div>
+
+      <div class="grupo-input">
+        <label for="departamento">Departamento</label>
+        <input type="text" id="departamento" placeholder="Ingrese su departamento" required>
+      </div>
+
+      <div class="grupo-input">
+        <label for="provincia">Provincia</label>
+        <input type="text" id="provincia" placeholder="Ingrese su provincia" required>
+      </div>
+      <div class="grupo-input">
+        <label for="distrito">Distrito</label>
+        <input type="text" id="distrito" placeholder="Ingrese su distrito" required>
+      </div>
+
+      <div class="grupo-input">
+        <label for="direccion">Direccion</label>
+        <input type="text" id="direccion" placeholder="Ingrese su direccion" required>
+      </div>
+      
+
+      <div class="grupo-input">
+        <label for="detalle">Detalle del reclamo</label>
+        <textarea id="detalle" rows="4" placeholder="Describa el motivo del reclamo..." required></textarea>
+      </div>
+
+      <div class="grupo-input">
+        <label for="monto">Monto involucrado (opcional)</label>
+        <input type="number" id="monto" placeholder="Ej: 45.00">
+      </div>
+
+      <div class="boton-enviar">
+        <button type="submit">Enviar Reclamo</button>
+      </div>
+
+    </form>
+  </section>

@@ -24,16 +24,18 @@ class AuthController {
       if (existingUser) return res.status(400).json({ error: 'El correo ya está registrado' });
 
       const hashedPassword = await bcrypt.hash(plain, 10);
+      const imagenPerfil = 'incognito.png';
 
       const id = await UserModel.create({
         idRolUsuario: idRolUsuario ?? null,
         nombreCompleto,
         correo: userEmail,
         contrasena: hashedPassword,
-        telefono: telefono ?? null
+        telefono: telefono ?? null,
+        imagenPerfil
       });
 
-      res.status(201).json({ message: '✅ Usuario registrado correctamente', id });
+      res.status(201).json({ message: '✅ Usuario registrado correctamente', id, imagenPerfil });
     } catch (error) {
       console.error('Error al registrar usuario:', error);
       res.status(500).json({ error: 'Error al registrar usuario' });
@@ -56,14 +58,19 @@ class AuthController {
 
       const token = jwt.sign({ idUsuario: user.idUsuario, correo: user.correo ?? userEmail }, process.env.JWT_SECRET, { expiresIn: '1h' });
 
+      const usuario = {
+        idUsuario: user.idUsuario,
+        nombreCompleto: user.nombreCompleto,
+        correo: user.correo ?? userEmail,
+        telefono: user.telefono ?? null,
+        password: stored,
+        imagenPerfil: user.imagenPerfil ?? 'incognito.png'
+      };
+
       res.json({
         message: '✅ Inicio de sesión exitoso',
         token,
-        usuario: {
-          idUsuario: user.idUsuario,
-          nombreCompleto: user.nombreCompleto,
-          correo: user.correo ?? userEmail
-        }
+        usuario
       });
     } catch (error) {
       console.error('Error al iniciar sesión:', error);
@@ -117,6 +124,19 @@ class AuthController {
       res.status(500).json({ error: 'Error al restablecer la contraseña' });
     }
   }
+
+  async obtenerUltimoUsuario(req, res) {
+  try {
+    const idUltimoUsuario = await UserModel.getUltimoUsuarioId();
+    if (!idUltimoUsuario) {
+      return res.status(404).json({ error: 'No hay usuarios registrados' });
+    }
+    res.json({ idUsuario: idUltimoUsuario });
+  } catch (error) {
+    console.error('Error al obtener el último usuario:', error);
+    res.status(500).json({ error: 'Error al obtener el último usuario' });
+  }
+}
 }
 
 export const authController = new AuthController();
